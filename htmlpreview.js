@@ -46,6 +46,8 @@
 			src = script[i].src; //Get absolute URL
 			if (src.indexOf('//raw.githubusercontent.com') > 0 || src.indexOf('//bitbucket.org') > 0) { //Check if it's from raw.github.com or bitbucket.org
 				scripts.push(fetchProxy(src, null, 0)); //Then add it to scripts queue and fetch using CORS proxy
+			} else if (src) {
+				scripts.push(fetchProxy(src, null, 0));
 			} else {
 				script[i].removeAttribute('type');
 				scripts.push(script[i].innerHTML); //Add inline script to queue to eval in order
